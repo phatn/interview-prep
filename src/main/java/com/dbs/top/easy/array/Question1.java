@@ -19,23 +19,20 @@ public class Question1 {
     }
 
     public int removeDuplicates(int[] nums) {
-        int j, len = nums.length;
-        for(int i = 0; i < len - 1; i++) {
-            j = i + 1;
-            while(j < len) {
-                if(nums[i] == nums[j]) {
-                    delete(nums, j);
-                    len = len - 1;
-                } else {
-                    j++;
-                }
+        int i = 0, len = nums.length;
+        while(i < len - 1) {
+            if(nums[i] == nums[i + 1]) {
+                delete(nums, len, i + 1);
+                len = len - 1;
+            } else {
+                i++;
             }
         }
         return len;
     }
 
-    private void delete(int[] nums, int k) {
-        while(k < nums.length - 1) {
+    private void delete(int[] nums, int len, int k) {
+        while(k < len - 1) {
             nums[k] = nums[k + 1];
             k++;
         }
