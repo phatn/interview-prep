@@ -12,29 +12,20 @@ import java.util.Arrays;
 public class Question1 {
 
     public static void main(String[] args) {
-        int[] nums = {1, 1, 2};
+        int[] nums = {1, 1, 1, 2, 2, 2, 3};
         System.out.println(Arrays.toString(nums));
         new Question1().removeDuplicates(nums);
         System.out.println(Arrays.toString(nums));
     }
 
     public int removeDuplicates(int[] nums) {
-        int i = 0, len = nums.length;
-        while(i < len - 1) {
-            if(nums[i] == nums[i + 1]) {
-                delete(nums, len, i + 1);
-                len = len - 1;
-            } else {
+        int i = 0;
+        for(int j = 1; j < nums.length; j++) {
+            if(nums[i] != nums[j]) {
                 i++;
+                nums[i] = nums[j];
             }
         }
-        return len;
-    }
-
-    private void delete(int[] nums, int len, int k) {
-        while(k < len - 1) {
-            nums[k] = nums[k + 1];
-            k++;
-        }
+        return i + 1;
     }
 }
